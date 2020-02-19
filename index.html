@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <input type="text" v-on:input="changeTitle">
+    <h1>{{title}}</h1>
+    <p v-once>{{sayHello()}} - <a v-bind:href="link">Google</a></p>
+    <hr>
+    <p v-html="finishedLink"></p>
+    <button v-on:click='increase(2, $event)'>Click me</button>
+    <button v-on:click="counter++">Click Me / increase without func</button>
+    <p>{{counter *2}}</p>
+    <p>{{ counter * 2 > 10 ? 'Greate than 10' : 'Smaller than 10'}}</p>
+   
+    <p v-on:mousemove="updateCoordinates">Coordinates: {{x}} / {{y}} - <span v-on:mousemove.stop>DEAD SPOT</span></p>
+
+</div>
+<div id="app2">
+==========================================
+<h2>app 2</h2>
+    <input type="text" v-model='name'>
+    <p>{{ name }}</p>
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <button v-on:click="secondCounter++">Increase Second</button>
+    <p>{{counter}} | {{secondCounter}}</p>
+    <p>Result: {{result()}} | {{output}}</p>
+    
+    <button v-on:click="changeLink">Click to Change Link</button>
+    <a :href="link">Link</a>
+
+
+</div>
+
+
+
+<div id="app3">
+==========================================
+<h2>css app3</h2>
+<div 
+class="demo"
+@click='attachRed = !attachRed'
+:class="divClasses"></div>
+<div class="demo" :style='myStyle' :class="{red:attachRed}">aaaaasdfas asd a</div>
+<div class="demo" :class='[color, {red: attachRed}]'></div>
+<hr>
+<input type="text" v-model='color'>
+<input type="text" v-model='width'>
+<input type="text" v-model='size'>
+</div>
+
+
+
+<div id='app4'>
+ ==============================================
+<p v-if='show'>You cna see me!</p>
+<p v-else>Now u see me!</p>
+<template v-if='show'>
+    <h1>akhdgbuak</h1>
+    <p>Inside template!</p>
+</template>
+<!--  set  display none -->
+<p v-show='show'>do you also see me?</p> 
+<!--  -->
+    <button @click='show = !show'>Switch</button>
+
+</div>
+
+
+
+
+
+<div id='app5'>
+==============================================
+  <h1>App 5</h1>
+<ul>
+    <li v-for='(ingredient, i) in ingredients' :key='ingredient'>
+        {{ingredient}} ({{i}})
+    </li>
+</ul>
+<button @click='ingredients.push(`spices`)'>Add New</button>
+<hr>
+<ul>
+<li v-for='person in persons'>
+    <div v-for='(value,key) in person'>{{key}}: {{ value}}</div>
+
+</li>
+</ul>
+<hr>
+
+<template v-for='(ingredient,index) in ingredients'>
+    <h1>{{ingredient}}</h1>
+    <p>{{index}}</p>
+</template>
+
+</div>
+   
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
