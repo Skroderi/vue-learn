@@ -1,0 +1,120 @@
+.wrapper{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.healths{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+.health{
+    width:400px;
+    height:40px;
+    background: gainsboro;
+    margin: 0 auto;
+}
+
+.health-panel{
+    margin:0 1rem;
+}
+
+.panel{
+    display: flex;
+    width:100%;
+    justify-content: center;
+    border: 1px solid gray;
+    margin: 2rem 0;
+    box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.21);
+}
+
+.panel-moves{
+    display: none;
+    justify-content: center; 
+}
+
+.btn{
+    margin: 20px 10px;
+    padding: 10px 10px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+}
+
+.start-btn{
+    background-color: #6460D6;
+}
+
+.heal-btn{
+background-color:#52F64F;
+}
+
+.attack-btn{
+    background-color: #EA4747
+}
+
+.special-btn{
+    background-color: #F7AC49;
+}
+
+.giveup-btn{
+    background-color: #D8DDD8;
+}
+.actions{
+    width:100%;
+    justify-content: center;
+    border: 1px solid gray;
+    box-shadow: 0px 0px 7px 4px rgba(0,0,0,0.21);
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+ul{
+    list-style-type: none;
+    padding:0;
+}
+
+li{
+    margin: 0.5rem 2rem;
+    padding:10px;
+}
+
+.health-bar{
+    display:block;
+    font-weight: 600;
+    width: 100%;
+    height:40px;
+    background-color: grey;
+}
+
+.health-player{
+    background-color: green;
+    height:100%;
+    width:100%;
+    line-height: 40px;
+}
+
+.health-ai{
+    background-color: green;
+    height:100%;
+    width:100%;
+    line-height: 40px;
+}
+
+.player-action{
+    color:blue;
+    background-color: #77DBFC;
+}
+
+.ai-action{
+    color:red;
+    background:#FD8F91;
+}
+.heal-action{
+    color: green;
+    background: #71F956;
+}

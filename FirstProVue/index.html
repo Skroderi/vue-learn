@@ -4,30 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="app">
 <div class="wrapper">
-
 <div class="healths">
-        <div class="health">
-            <div class="health-player"></div>
+        <div class="health-panel">
+            <h1>You</h1>
+            <div class="health-bar">
+                <div class="health-player" :style='{width: healthPlayer + "%"}'>{{healthPlayer}}</div>     
+            </div>
     </div>
-        <div class="health">
-            <div class="health-ai"></div>
+        <div class="health-panel">
+            <h1>Monster</h1>
+            <div class="health-bar">
+               <div class=health-ai :style='{width: healthAI + "%"}'> {{healthAI}}</div>
+            </div>
     </div>
  </div>
 
 <div class="panel">
-    <button class='btn start-btn'>start game</button>
-    <button class='btn attack-btn'>attack</button>
-    <button class='btn special-btn'>special attack</button>
-    <button class='btn heal-btn'>heal</button>
-    <button class='btn giveup-btn'>give up</button>
-</div>
+    <button class='btn start-btn' v-if='!isGameStarted' v-on:click='startGame'>start game</button>
+<template v-else>
+    <button class='btn attack-btn' v-on:click='action(basicAttack,"attack")'>attack</button>
+    <button class='btn special-btn' v-on:click='action(specialAttack,"attack")'>special attack</button>
+    <button class='btn heal-btn' v-on:click='action(heal,"heal")'>heal</button>
+    <button class='btn giveup-btn'  @click='giveUp'>give up</button>
+</template>
 
 </div>
+<div class="actions" v-if='historyActions.length > 0'>
+<ul>
+    <li v-for='action in historyActions'
+        :class="{'player-action': action.isPlayer, 'ai-action': !action.isPlayer,'heal-action': action.isHeal}">
+{{action.text}}
+    </li>
 
+</ul>
+
+</div>
+</div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src=""></script>
+    <script src="./script.js"></script>
 </body>
 </html>

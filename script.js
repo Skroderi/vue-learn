@@ -86,8 +86,6 @@ new Vue({
 })
 
 
-
-
 new Vue({
     el:'#app3',
     data:{
@@ -116,7 +114,6 @@ new Vue({
 
 
 
-
 new Vue({
     el:'#app4',
     data:{
@@ -126,10 +123,9 @@ new Vue({
 
 
 
-
-
-new Vue({
+var vm5 = new Vue({
     el:'#app5',
+    template: '<h1> aaaaa</h1>',
     data:{
         ingredients:['meat', 'fruit', 'cookies'],
         persons:[
@@ -139,5 +135,7 @@ new Vue({
     }
 })
 
+vm5.$mount('#app5')
 
+document.getElementById('app5').appendChild(vm5.$el)
 
