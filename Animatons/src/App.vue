@@ -4,12 +4,14 @@
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <h1>Animations</h1>
         <hr />
-        <button class="btn btn-primary" @click="show = !show">
-          Show alert
-        </button>
+        <select v-model="alertAnimation" class="form-control">
+          <option value="fade">Fade</option>
+          <option value="slide">Slide</option>
+        </select>
+        <button class="btn btn-primary" @click="show = !show">Show alert</button>
         <br />
         <br />
-        <transition name="fade">
+        <transition :name="alertAnimation">
           <div class="alert alert-info" v-show="show">This is some info</div>
         </transition>
         <transition name="slide" type="animation">
@@ -17,6 +19,27 @@
         </transition>
         <transition name="fade" appear>
           <div class="alert alert-info" v-if="show">This is some info</div>
+        </transition>
+        <transition :name="alertAnimation" mode="out-in">
+          <div class="alert alert-info" v-if="show" key="info">This is some info</div>
+          <div class="alert alert-warning" v-else key="warning">This is warning alert</div>
+        </transition>
+        <hr />
+        <button class="btn btn-primary" @click="load = !load">Load / Remove Element</button>
+        <br />
+        <br />
+
+        <transition
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @enter-enter="afterEnter"
+          @enter-cancelled="enterCancelled"
+          @before-leave="beforeLeave"
+          @leave="leave"
+          @after-leave="afterLeave"
+          @leave-cancelled="leaveCancelled"
+        >
+          <div style="width:100px; height: 100px; background-color:lightgreen" v-if="load"></div>
         </transition>
       </div>
     </div>
@@ -27,8 +50,38 @@
 export default {
   data() {
     return {
-      show: true
+      show: false,
+      load: true,
+      alertAnimation: "fade"
     };
+  },
+  methods: {
+    beforeEnter(el) {
+      console.log("beforeEnter");
+    },
+    enter(el, done) {
+      console.log("enter");
+      done();
+    },
+    afterEnter() {
+      console.log("afterenter");
+    },
+    enterCancelled(el) {
+      console.log("enterCancelled");
+    },
+    beforeLeave(el) {
+      console.log("beforeLeave");
+    },
+    leave(el, done) {
+      console.log("leave");
+      done();
+    },
+    afterLeave(el) {
+      console.log("afterLeave");
+    },
+    leaveCancelled(el) {
+      console.log("leaveCancelled");
+    }
   }
 };
 </script>
