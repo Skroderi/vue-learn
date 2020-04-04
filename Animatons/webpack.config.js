@@ -9,8 +9,7 @@ module.exports = {
     filename: 'build.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
         loader: 'vue',
         options: {
@@ -34,7 +33,8 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue'
-    }
+    },
+    extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
     historyApiFallback: true,

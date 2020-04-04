@@ -42,20 +42,50 @@
         >
           <div style="width:100px; height: 100px; background-color:lightgreen" v-if="load"></div>
         </transition>
+        <hr />
+        <button
+          class="btn btn-primary"
+          @click="selectedComponent == 'app-success-alert'? selectedComponent = 'app-danger-alert' :selectedComponent = 'app-success-alert'"
+        >Change Alert</button>
+        <br />
+        <component :is="selectedComponent"></component>
+        <hr />
+        <button @click="addItem()">Add Item</button>
+
+        <ul class="list-group">
+          <transition-group name="slide">
+            <li
+              class="list-group-item"
+              v-for="(number,index) in numbers"
+              @click="removeItem(index)"
+              style="cursor:pointer"
+              :key="number"
+            >{{number}}</li>
+          </transition-group>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import DangerAlert from "./DangerAlert";
+import SuccessAlert from "./SuccessAlert";
+
 export default {
   data() {
     return {
       show: false,
       load: true,
       alertAnimation: "fade",
-      elementWidth: 100
+      elementWidth: 100,
+      selectedComponent: "app-success-alert",
+      numbers: ["12", "13", "14", "15"]
     };
+  },
+  components: {
+    appDangerAlert: DangerAlert,
+    appSuccessAlert: SuccessAlert
   },
   methods: {
     beforeEnter(el) {
@@ -103,6 +133,13 @@ export default {
     },
     leaveCancelled(el) {
       console.log("leaveCancelled");
+    },
+    addItem() {
+      const pos = Math.floor(Math.random() * this.numbers.length);
+      this.numbers.splice(pos, 0, this.numbers.length + 1);
+    },
+    removeItem(index) {
+      this.numbers.splice(index, 1);
     }
   }
 };
@@ -140,6 +177,9 @@ export default {
   transition: opacity 3s;
 
   opacity: 0;
+}
+.slide-move {
+  transition: 1s;
 }
 
 @keyframes slide-in {
