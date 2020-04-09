@@ -1,14 +1,14 @@
 import Vue from 'vue'
-import VueResource from 'vue-resource'
+import VueResource from 'vue-resource';
 import App from './App.vue'
 
-Vue.use(VueResource)
+Vue.use(VueResource);
 
-Vue.http.options.root = 'https://vue-http-3634b.firebaseio.com/'
+Vue.http.options.root = 'https://vuejs-http.firebaseio.com/';
 Vue.http.interceptors.push((request, next) => {
   console.log(request);
   if (request.method == 'POST') {
-    request.method = 'PUT'
+    request.method = 'PUT';
   }
   next(response => {
     response.json = () => {
@@ -16,9 +16,8 @@ Vue.http.interceptors.push((request, next) => {
         messages: response.body
       }
     }
-  })
-
-})
+  });
+});
 
 new Vue({
   el: '#app',
