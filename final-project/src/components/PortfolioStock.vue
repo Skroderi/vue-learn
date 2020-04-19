@@ -2,15 +2,17 @@
   <div class="stock">
     <header>
       <span class="name">{{ stock.name }}</span>
-      <span>(Price: {{ stock.price }} $)</span>
+      <span>(Price: {{ stock.price }} $) | Quantity: {{stock.quantity}}</span>
     </header>
     <div class="stock-content">
       <input type="number" min="0" placeholder="Quantity" v-model="quantity" />
-      <button @click.prevent="buy" :disabled="quantity <=0">Buy</button>
+      <button @click.prevent="sellStock" :disabled="quantity <=0">Sell</button>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -19,14 +21,17 @@ export default {
   },
   props: ["stock"],
   methods: {
-    buy() {
-      const boughtStock = {
+    ...mapActions({
+      placeSellOrder: "sellStock"
+    }),
+
+    sellStock() {
+      const soldStock = {
         stockId: this.stock.id,
         quantity: this.quantity,
         stockPrice: this.stock.price
       };
-      console.log(boughtStock);
-      this.$store.dispatch("buy", boughtStock);
+      this.placeSellOrder(soldStock);
       this.quantity = 0;
     }
   }

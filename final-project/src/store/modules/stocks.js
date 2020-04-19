@@ -37,7 +37,7 @@ const actions = {
   buy: ({
     commit
   }, boughtStock) => {
-    commit()
+    commit('BUY_STOCK', boughtStock)
   },
   initStocks: ({
     commit

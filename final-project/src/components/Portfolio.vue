@@ -1,6 +1,6 @@
 <template>
   <div class="stocks">
-    <app-stock v-for="stock in stocks" :name="stock.name" :price="stock.price"></app-stock>
+    <app-stock v-for="stock in stocks" :stock="stock"></app-stock>
   </div>
 </template>
 
@@ -13,22 +13,17 @@
 </style>
 
 <script>
-import Stock from "./Stock";
-
+import PortfolioStock from "./PortfolioStock";
+import { mapGetters } from "vuex";
 export default {
-  data: function() {
-    return {
-      portfolio: this.$store.state.portfolio
-    };
-  },
   computed: {
-    // stocks() {
-    //   console.log(this.stocks);
-    // }
+    ...mapGetters({
+      stocks: "stockPortfolio"
+    })
   },
 
   components: {
-    appStock: Stock
+    appStock: PortfolioStock
   }
 };
 </script>
