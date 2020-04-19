@@ -5,7 +5,7 @@
         <router-link to="/" tag="a" active-class="active" exact>Stock Trader</router-link>
       </li>
       <li>
-        <a href>Portfolio</a>
+        <router-link to="/portfolio" tag="a" active-class="active">Portfolio</router-link>
       </li>
       <li>
         <router-link to="/stocks" tag="a" active-class="active">Stocks</router-link>
@@ -20,11 +20,21 @@
         <a href>Save & Load</a>
       </li>
       <li>
-        <a href>Founds</a>
+        <a href>Founds: ${{ founds }}</a>
       </li>
     </ul>
   </nav>
 </template>
+
+<script>
+export default {
+  computed: {
+    founds() {
+      return this.$store.state.founds;
+    }
+  }
+};
+</script>
 
 <style>
 nav {
