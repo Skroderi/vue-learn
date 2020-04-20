@@ -7,7 +7,7 @@
     </div>
     <hr />
     <strong>
-      <span>You Founds:</span>
+      <span>You Founds: {{funds}} $</span>
     </strong>
   </div>
 </template>
@@ -23,3 +23,13 @@
   flex-direction: column;
 }
 </style>
+
+<script>
+export default {
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    }
+  }
+};
+</script>

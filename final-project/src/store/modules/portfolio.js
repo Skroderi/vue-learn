@@ -18,7 +18,7 @@ const mutations = {
         quantity: quantity
       })
     }
-    state.funds -= stockId.stockPrice * quantity
+    state.funds -= stockPrice * quantity
 
   },
   'SELL_STOCK'(state, {
@@ -32,7 +32,7 @@ const mutations = {
     } else {
       state.stocks.splice(state.stocks.indexOf(record), 1)
     }
-    state.funds += stockId.stockPrice * quantity
+    state.funds += stockPrice * quantity
   },
 
 }

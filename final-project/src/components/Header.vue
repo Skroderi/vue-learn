@@ -20,7 +20,7 @@
         <a href>Save & Load</a>
       </li>
       <li>
-        <a href>Founds: ${{ founds }}</a>
+        <a href>Founds: ${{ funds }}</a>
       </li>
     </ul>
   </nav>
@@ -29,8 +29,8 @@
 <script>
 export default {
   computed: {
-    founds() {
-      return this.$store.state.founds;
+    funds() {
+      return this.$store.getters.funds;
     }
   }
 };
