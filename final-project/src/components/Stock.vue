@@ -6,7 +6,10 @@
     </header>
     <div class="stock-content">
       <input type="number" min="0" placeholder="Quantity" v-model="quantity" />
-      <button @click.prevent="buy" :disabled="quantity <=0">Buy</button>
+      <button @click.prevent="buy" :disabled="insufficiereturnntFunds || quantity <=0">
+        {{insufficiereturnntFunds ?
+        'No funds' : 'Buy'}}
+      </button>
     </div>
   </div>
 </template>
@@ -18,6 +21,14 @@ export default {
     };
   },
   props: ["stock"],
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+    insufficiereturnntFunds() {
+      return this.quantity * this.stock.price > this.funds;
+    }
+  },
   methods: {
     buy() {
       const boughtStock = {
